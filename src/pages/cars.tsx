@@ -33,8 +33,9 @@ export default function CarsList({
         <Search singleColumn makes={makes} models={models} />
       </Grid>
       <Grid item xs={12} sm={7} md={9} lg={10}>
-        <pre style={{ fontSize: '3rem' }}>
+        <pre style={{ fontSize: '1rem' }}>
           <Pagination
+            variant="outlined" shape="rounded"
             page={parseInt(getAsString(query.page) || '1')}
             count={totalPages}
             renderItem={(item) => (
@@ -46,6 +47,7 @@ export default function CarsList({
               />
             )}
           />
+          {/* this simply prints the raw car data, nothing fancy  */}
           {JSON.stringify({ totalPages, cars }, null, 4)}
         </pre>
       </Grid>

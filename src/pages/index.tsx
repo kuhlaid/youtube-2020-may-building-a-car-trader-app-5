@@ -1,12 +1,12 @@
-import { Button, FormControl, Grid, InputLabel, makeStyles, MenuItem, Paper, Select, SelectProps } from '@material-ui/core';
+import { Button, FormControl, Grid, InputLabel, Link, makeStyles, MenuItem, Paper, Select, SelectProps } from '@material-ui/core';
 import { Field, Form, Formik, useField, useFormikContext } from 'formik';
 import { GetServerSideProps } from 'next';
 import router, { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
-import { getMakes, Make } from '../database/getMakes';
-import { getModels, Model } from '../database/getModels';
-import { getAsString } from '../getAsString';
+import { getMakes, Make } from 'src/database/getMakes';
+import { getModels, Model } from 'src/database/getModels';
+import { getAsString } from 'src/getAsString';
 
 export interface SearchProps {
   makes: Make[];
@@ -37,6 +37,7 @@ export default function Search({ makes, models, singleColumn }: SearchProps) {
   });
 
   return (
+    // shallow needs to be false here, otherwise the search will not pull the data on the cars page
     <Formik
       initialValues={initialValues}
       onSubmit={(values) => {
@@ -46,7 +47,7 @@ export default function Search({ makes, models, singleColumn }: SearchProps) {
             query: { ...values, page: 1 },
           },
           undefined,
-          { shallow: true }
+          { shallow: false }
         );
       }}
     >
