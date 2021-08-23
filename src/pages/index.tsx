@@ -1,12 +1,12 @@
-import { Button, FormControl, Grid, InputLabel, Link, makeStyles, MenuItem, Paper, Select, SelectProps } from '@material-ui/core';
+import { Button, FormControl, Grid, InputLabel, makeStyles, MenuItem, Paper, Select, SelectProps } from '@material-ui/core';
 import { Field, Form, Formik, useField, useFormikContext } from 'formik';
 import { GetServerSideProps } from 'next';
 import router, { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import useSWR from 'swr';
 import { getMakes, Make } from 'src/database/getMakes';
 import { getModels, Model } from 'src/database/getModels';
 import { getAsString } from 'src/getAsString';
+import useSWR from 'swr';
 
 export interface SearchProps {
   makes: Make[];
@@ -154,14 +154,8 @@ export function ModelSelect({ initialMake, models, make, ...props }: ModelSelect
 
   const { data: newModels } = useSWR<Model[]>('/api/models?make=' + make, {
     dedupingInterval: 60000,
-    initialData: make === 'all' ? [] : initialModelsOrUndefined 
+    initialData: make === 'all' ? [] : initialModelsOrUndefined
   });
-
-  useEffect(() => {
-    if (!newModels?.map((a) => a.model).includes(field.value)) {
-      setFieldValue('model', 'all');
-    }
-  }, [make, newModels]);
 
   return (
     <FormControl fullWidth variant="outlined">

@@ -6,6 +6,7 @@ import { GetServerSideProps } from 'next';
 import React from 'react';
 import { CarModel } from '../../../../../api/Car';
 import { openDB } from '../../../../openDB';
+import Image from 'next/image';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -33,7 +34,7 @@ export default function CarDetails({ car }: CarDetailsProps) {
       <Paper className={classes.paper}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={5}>
-            <img className={classes.img} alt="complex" src={car.photoUrl} />
+            <Image className={classes.img} alt="complex" src={car.photoUrl} />
           </Grid>
           <Grid item xs={12} sm={6} md={7} container>
             <Grid item xs container direction="column" spacing={2}>

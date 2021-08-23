@@ -1,15 +1,15 @@
 import { Box, Container, CssBaseline } from '@material-ui/core';
 import red from '@material-ui/core/colors/red';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import axios from 'axios';
 import App from 'next/app';
 import Head from 'next/head';
 import React from 'react';
 import { SWRConfig } from 'swr';
-import { Nav } from '../components/Nav';
+import { Nav } from 'src/components/Nav';
 
 // Create a theme instance.
-export const theme = createMuiTheme({
+export const theme = createTheme({
   palette: {
     primary: {
       main: '#556cd6',
